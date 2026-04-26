@@ -31,7 +31,6 @@ public class SoftwareEngineerController {
     }
 
     @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteSoftwareEngineer(@PathVariable Integer id) {
         softwareEngineerService.deleteSoftwareEngineer(id);
     }

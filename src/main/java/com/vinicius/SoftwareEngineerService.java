@@ -8,11 +8,14 @@ import java.util.List;
 public class SoftwareEngineerService {
 
     private final SoftwareEngineerRepository softwareEngineerRepository;
+    private final AiService aiService;
 
     public SoftwareEngineerService(
-            SoftwareEngineerRepository softwareEngineerRepository
+            SoftwareEngineerRepository softwareEngineerRepository,
+            AiService aiService
     ) {
         this.softwareEngineerRepository = softwareEngineerRepository;
+        this.aiService = aiService;
     }
 
     public List<SoftwareEngineer> getAllSoftwareEngineers() {
@@ -28,8 +31,8 @@ public class SoftwareEngineerService {
                 softwareEngineer.getTechStack(),
                 softwareEngineer.getName()
         );
-        //String chatRes = aiService.chat(prompt);
-        //softwareEngineer.setLearningPathRecommendation(chatRes);
+        String chatRes = aiService.chat(prompt);
+        softwareEngineer.setLearningPathRecommendation(chatRes);
         softwareEngineerRepository.save(softwareEngineer);
     }
 
